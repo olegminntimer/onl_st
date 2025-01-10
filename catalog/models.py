@@ -26,6 +26,19 @@ class Product(models.Model):
     name = models.CharField(
         max_length=150, verbose_name="Продукт", help_text="Введите название продукта"
     )
+    description = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Описание продукта",
+        help_text="Введите описание продукта",
+    )
+    photo = models.ImageField(
+        upload_to="product/photo",
+        blank=True,
+        null=True,
+        verbose_name="Фото продукта",
+        help_text="Загрузите фото продукта",
+    )
     category = models.ForeignKey(
         Category,
         on_delete=models.SET_NULL,
@@ -35,24 +48,20 @@ class Product(models.Model):
         help_text="Введите название категории",
         related_name='products'
     )
-    photo = models.ImageField(
-        upload_to="product/photo",
-        blank=True,
-        null=True,
-        verbose_name="Фото продукта",
-        help_text="Загрузите фото продукта",
-    )
-    description = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="Описание продукта",
-        help_text="Введите описание продукта",
-    )
     price = models.FloatField(
-        verbose_name="Цена продукта", help_text="Введите цену продукта"
+        blank=True,
+        null=True,
+        verbose_name="Цена продукта", help_text="Введите цену продукта",
     )
-    quantity = models.IntegerField(
-        verbose_name="Количество продукта", help_text="Введите количество продукта"
+    created_at = models.DateField(
+        blank=True,
+        null=True,
+        verbose_name="Дата создания", help_text="Дата создании записи о продукте"
+    )
+    updated_at = models.DateField(
+        blank=True,
+        null=True,
+        verbose_name="Дата последнего изменения", help_text="Дата внесения последнего изменения"
     )
 
     class Meta:
