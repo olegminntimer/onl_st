@@ -8,7 +8,7 @@ from catalog.urls import app_name
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('catalog/', include('catalog.urls', namespace=app_name))
+    path('catalog/', include('catalog.urls', namespace='catalog')),
 ]
 
 if settings.DEBUG:
