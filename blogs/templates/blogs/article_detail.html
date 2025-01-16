@@ -1,0 +1,22 @@
+{% extends 'blogs/base.html' %}
+{% load my_tags %}
+{% block content %}
+<article class="blog-post">
+  <h2 class="display-5 link-body-emphasis mb-1">{{ object.title }}</h2>
+  <p class="blog-post-meta">Дата: {{ object.created_at }}</p>
+  {% if is_published %}
+  <p class="blog-post-meta">Опубликована</p>
+  {% else %}
+  <p class="blog-post-meta">Не опубликована</p>
+  {% endif %}
+  <hr>
+  <p>{{ object.content }}</p>
+  <hr>
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="btn-group">
+      <a class="btn btn-primary" href="{% url 'blogs:article_list' %}" role="button">Назад</a>
+    </div>
+  </div>
+  <hr>
+</article>
+{% endblock %}
