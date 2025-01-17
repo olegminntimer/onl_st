@@ -1,0 +1,24 @@
+{% extends 'blogs/base.html' %}
+{% load my_tags %}
+{% block content %}
+  {% for article in object_list %}
+    {% if article.is_published %}
+        <article class="blog-post">
+          <h2 class="display-5 link-body-emphasis mb-1">{{ article.title }}</h2>
+          <p class="blog-post-meta">{{ article.created_at }}</p>
+          <p class="blog-post-meta">Количество просмотров: {{ article.views_counter }}</p>
+          <hr>
+          <p>{{ article.content | truncatechars:700}}</p>
+          <hr>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <a class="btn btn-primary" href="{% url 'blogs:article_detail' article.pk %}" role="button">Посмотреть</a>
+              <a class="btn btn-primary" href="{% url 'blogs:article_update' article.pk %}" role="button">Редактировать</a>
+              <a class="btn btn-primary" href="{% url 'blogs:article_delete' article.pk %}" role="button">Удалить</a>
+            </div>
+          </div>
+          <hr>
+        </article>
+    {% endif %}
+  {% endfor %}
+{% endblock %}
