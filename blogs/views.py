@@ -8,6 +8,9 @@ from blogs.models import Article
 class ArticleListView(ListView):
     model = Article
 
+    def get_queryset(self):
+        return Article.objects.filter(is_published=True)
+
 class ArticleDetailView(DetailView):
     model = Article
 

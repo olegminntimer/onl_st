@@ -29,7 +29,7 @@ class Article(models.Model):
         help_text="Введите дату написания статьи"
     ) # дата создания,
     is_published = models.BooleanField(
-        default=False,
+        default=True,
         verbose_name="Публикация",
         help_text="Опубликована ли статья?",
     ) # признак публикации (булевое поле),

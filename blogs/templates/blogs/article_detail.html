@@ -4,11 +4,7 @@
 <article class="blog-post">
   <h2 class="display-5 link-body-emphasis mb-1">{{ object.title }}</h2>
   <p class="blog-post-meta">Дата: {{ object.created_at }}</p>
-  {% if is_published %}
-  <p class="blog-post-meta">Опубликована</p>
-  {% else %}
-  <p class="blog-post-meta">Не опубликована</p>
-  {% endif %}
+  <p class="blog-post-meta">{% if not is_published %}Опубликована{% else %}Не опубликована{% endif %}</p>
   <hr>
   <p>{{ object.content }}</p>
   <hr>
