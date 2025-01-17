@@ -1,0 +1,65 @@
+[
+{
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+        "name": "Овощи",
+        "description": "Овощи съедобные"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+        "name": "Фрукты",
+        "description": "Фрукты полезные для здоровья"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+        "name": "Фрукты",
+        "description": "Фрукты полезные для здоровья"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+        "name": "Морковь",
+        "description": "Красно-оранжевая, очень вкусная",
+        "photo": "",
+        "category": 1,
+        "price": 123.0,
+        "created_at": null,
+        "updated_at": null
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "name": "Картофель",
+        "description": "Картофель белый, среднего размера.",
+        "photo": "",
+        "category": null,
+        "price": 95.0,
+        "created_at": null,
+        "updated_at": null
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 8,
+    "fields": {
+        "name": "Ягода",
+        "description": null,
+        "photo": "",
+        "category": 2,
+        "price": 300.0,
+        "created_at": null,
+        "updated_at": null
+    }
+}
+]
