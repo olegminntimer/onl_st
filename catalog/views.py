@@ -1,6 +1,6 @@
-from django.views.generic import ListView, DetailView, DeleteView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import DeleteView, DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
-from django.urls import reverse_lazy, reverse
 
 from catalog.forms import ProductForm
 from catalog.models import Product
@@ -8,6 +8,7 @@ from catalog.models import Product
 
 class ProductListView(ListView):
     model = Product
+
 
 class ProductDetailView(DetailView):
     model = Product
@@ -18,10 +19,12 @@ class ProductDetailView(DetailView):
         self.object.save()
         return self.object
 
+
 class ProductCreateView(CreateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy("catalog:product_list")
+
 
 class ProductUpdateView(UpdateView):
     model = Product
@@ -30,6 +33,7 @@ class ProductUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse("catalog:product_detail", args=[self.kwargs.get("pk")])
+
 
 class ProductDeleteView(DeleteView):
     model = Product

@@ -88,9 +88,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "price",
-                    models.FloatField(
-                        help_text="Введите цену продукта", verbose_name="Цена продукта"
-                    ),
+                    models.FloatField(help_text="Введите цену продукта", verbose_name="Цена продукта"),
                 ),
                 (
                     "quantity",

@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
-from catalog.models import Product, Category
+
+from catalog.models import Category, Product
 
 
 class Command(BaseCommand):
@@ -67,12 +68,6 @@ class Command(BaseCommand):
         for product in products:
             product, created = Product.objects.get_or_create(**product)
             if created:
-                self.stdout.write(
-                    self.style.SUCCESS(
-                        f"Добавление продукта произошло успешно: {product.name}"
-                    )
-                )
+                self.stdout.write(self.style.SUCCESS(f"Добавление продукта произошло успешно: {product.name}"))
             else:
-                self.stdout.write(
-                    self.style.WARNING(f"Продукт уже добавлен: {product.name}")
-                )
+                self.stdout.write(self.style.WARNING(f"Продукт уже добавлен: {product.name}"))

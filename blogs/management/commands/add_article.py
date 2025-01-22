@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand
+
 from blogs.models import Article
 
 
@@ -38,12 +39,6 @@ class Command(BaseCommand):
         for article in articles:
             article, created = Article.objects.get_or_create(**article)
             if created:
-                self.stdout.write(
-                    self.style.SUCCESS(
-                        f"Добавление статьи произошло успешно: {article.title}"
-                    )
-                )
+                self.stdout.write(self.style.SUCCESS(f"Добавление статьи произошло успешно: {article.title}"))
             else:
-                self.stdout.write(
-                    self.style.WARNING(f"Статья уже добавлена: {article.title}")
-                )
+                self.stdout.write(self.style.WARNING(f"Статья уже добавлена: {article.title}"))

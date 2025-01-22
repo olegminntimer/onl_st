@@ -1,9 +1,9 @@
-from django.views.generic import ListView, DetailView, DeleteView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import DeleteView, DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
-from django.urls import reverse_lazy, reverse
 
-from blogs.models import Article
 from blogs.forms import ArticleForm
+from blogs.models import Article
 
 
 class ArticleListView(ListView):
