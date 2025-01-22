@@ -3,6 +3,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse_lazy, reverse
 
 from blogs.models import Article
+from blogs.forms import ArticleForm
 
 
 class ArticleListView(ListView):
@@ -24,13 +25,13 @@ class ArticleDetailView(DetailView):
 
 class ArticleCreateView(CreateView):
     model = Article
-    fields = ("title", "content", "preview", "is_published")
+    form_class = ArticleForm
     success_url = reverse_lazy("blogs:article_list")
 
 
 class ArticleUpdateView(UpdateView):
     model = Article
-    fields = ("title", "content", "preview", "is_published")
+    form_class = ArticleForm
     success_url = reverse_lazy("blogs:article_list")
 
     def get_success_url(self):
