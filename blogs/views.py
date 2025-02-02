@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DeleteView, DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
@@ -23,10 +24,17 @@ class ArticleDetailView(DetailView):
         return self.object
 
 
-class ArticleCreateView(CreateView):
+class ArticleCreateView(CreateView, LoginRequiredMixin):
     model = Article
     form_class = ArticleForm
     success_url = reverse_lazy("blogs:article_list")
+
+    def form_valid(self, form):
+        article = form.save()
+        user = self.request.user
+        article.owner = user
+        article.save()
+        return super().form_valid(form)
 
 
 class ArticleUpdateView(UpdateView):

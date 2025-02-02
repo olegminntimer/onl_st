@@ -1,4 +1,4 @@
-{% load static %}
+<!--{% load static %}-->
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head><script src="/docs/5.3/assets/js/color-modes.js"></script>
@@ -110,6 +110,7 @@
     <!-- Custom styles for this template -->
     <link href="blog.css" rel="stylesheet">
   </head>
+
   <body>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
       <symbol id="check2" viewBox="0 0 16 16">
@@ -183,17 +184,17 @@
         <div class="row py-lg-5">
           <div class="col-lg-6 col-md-8 mx-auto">
             <h1 class="fw-light">Мой блог</h1>
+            {% if user.is_authenticated %}
             <p>
               <a class="btn btn-primary" href="{% url 'blogs:article_create' %}" role="button">Добавить статью</a>
             </p>
+            {% endif %}
           </div>
         </div>
       </section>
     <div class="row g-5">
       <div class="col-md-12">
-        <h3 class="pb-4 mb-4 fst-italic border-bottom">
-          "Горячие пирожки"
-        </h3>
+        <h3 class="pb-4 mb-4 fst-italic border-bottom"></h3>
 
         {% block content %}
         {% endblock %}

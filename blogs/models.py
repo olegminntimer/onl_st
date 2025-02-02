@@ -1,5 +1,7 @@
 from django.db import models
 
+from users.models import User
+
 
 class Article(models.Model):
 
@@ -36,6 +38,14 @@ class Article(models.Model):
         help_text="Укажите количество просмотров",
         default=0,
     )  # количество просмотров.
+    owner = models.ForeignKey(
+        User,
+        verbose_name="Владелец блога",
+        help_text="Укажите владельца блога",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+    )  # Владелец блога.
 
     class Meta:
         verbose_name = "Статья"

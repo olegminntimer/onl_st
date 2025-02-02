@@ -5,6 +5,7 @@
   <h2 class="display-5 link-body-emphasis mb-1">{{ object.title }}</h2>
   <p class="blog-post-meta">Дата: {{ object.created_at }}</p>
   <p class="blog-post-meta">{% if not is_published %}Опубликована{% else %}Не опубликована{% endif %}</p>
+  <img src="{{ article.preview | media_filter }}">
   <hr>
   <p>{{ object.content }}</p>
   <hr>
