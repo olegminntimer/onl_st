@@ -54,3 +54,8 @@ class ProductForm(StyleFormMixin, ModelForm):
             if word.strip() in FORBIDDEN_WORDS:
                 raise ValidationError(f"{word} - запрещенное слово!")
         return description
+
+class ProductModeratorForm(StyleFormMixin, ModelForm):
+    class Meta:
+        model = Product
+        fields = ("is_published",)
