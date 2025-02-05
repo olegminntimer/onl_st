@@ -1,4 +1,5 @@
 from django.db import models
+from mypy.dmypy.client import request
 
 from users.models import User
 
@@ -85,6 +86,7 @@ class Product(models.Model):
         null=True,
         on_delete=models.SET_NULL,
     )  # Владелец продукта.
+
 
     class Meta:
         verbose_name = "Продукт"
