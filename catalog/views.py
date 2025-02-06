@@ -6,10 +6,21 @@ from django.views.generic.edit import CreateView, UpdateView
 
 from catalog.forms import ProductForm, ProductModeratorForm
 from catalog.models import Product
+from catalog.services import get_products_from_cache, get_products_from_category
 
 
 class ProductListView(ListView):
     model = Product
+
+    def get_queryset(self):
+        return get_products_from_cache()
+
+
+class ProductFromCategoryListView(ListView):
+    model = Product
+
+    def get_queryset(self):
+        return get_products_from_category()
 
 
 class ProductDetailView(LoginRequiredMixin, DetailView):
