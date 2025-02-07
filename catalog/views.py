@@ -1,8 +1,11 @@
+import sys
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DeleteView, DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
+from mypy.dmypy.client import request
 
 from catalog.forms import ProductForm, ProductModeratorForm
 from catalog.models import Product, Category
@@ -30,10 +33,14 @@ class ProductCategoryListView(ListView):
         context = super().get_context_data(**kwargs)
         context['categories'] = categories
         return context
-
-    template_name = "catalog/product_category_list.html"
+    # category_id = request.GET('category.id')
+    # queryset = Product.objects.filter(category=category_id)
     # def get_queryset(self):
-    #     return get_products_from_category(self.object_list)
+    #     category = self.request.GET.get('category')
+    #     queryset = get_products_from_category(category)
+    #     return queryset
+    template_name = "catalog/product_category_list.html"
+
 
 
 class ProductDetailView(LoginRequiredMixin, DetailView):

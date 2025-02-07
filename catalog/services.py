@@ -19,4 +19,5 @@ def get_products_from_cache():
 
 @staticmethod
 def get_products_from_category(category):
-    return Product.objects.filter(category=category)
+    products = Product.objects.filter(category=category)
+    return products
