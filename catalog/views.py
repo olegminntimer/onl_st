@@ -5,22 +5,35 @@ from django.views.generic import DeleteView, DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
 
 from catalog.forms import ProductForm, ProductModeratorForm
-from catalog.models import Product
-from catalog.services import get_products_from_cache, get_products_from_category
+from catalog.models import Product, Category
+from catalog.services import get_products_from_cache, get_products_from_category  # , get_products_from_category
 
 
 class ProductListView(ListView):
     model = Product
 
+    def get_context_data(self, **kwargs):
+        categories = Category.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['categories'] = categories
+        return context
+
     def get_queryset(self):
         return get_products_from_cache()
 
 
-class ProductFromCategoryListView(ListView):
+class ProductCategoryListView(ListView):
     model = Product
 
-    def get_queryset(self):
-        return get_products_from_category()
+    def get_context_data(self, **kwargs):
+        categories = Category.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['categories'] = categories
+        return context
+
+    template_name = "catalog/product_category_list.html"
+    # def get_queryset(self):
+    #     return get_products_from_category(self.object_list)
 
 
 class ProductDetailView(LoginRequiredMixin, DetailView):
