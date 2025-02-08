@@ -4,30 +4,12 @@
           id="dropdownMenuButton1"
           data-bs-toggle="dropdown"
           aria-expanded="false">
-
         Выбери категорию продукта
     </button>
     <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
     <li><a class="dropdown-item" href="{% url 'catalog:product_list' %}">Все</a></li>
     {% for category in categories %}
-    <li><a class="dropdown-item" href="{% url 'catalog:product_category_list' category %}">{{ category }}</a></li>
+    <li><a class="dropdown-item" href="{% url 'catalog:product_category_list' category.id %}">{{ category }}</a></li>
     {% endfor %}
     </ul>
 </div>
-<!--<form action="" method="POST">-->
-<!--    {% csrf_token %}-->
-<!--    <select name="test">-->
-<!--    {% for category in categories %}-->
-<!--         <option value="{{ category }}">{{ category }}</option>-->
-<!--    {% endfor %}-->
-<!--    </select>-->
-<!--    <input type="submit" value="Выбери категорию продукта">-->
-<!--</form>-->
-<!--Выбери категорию продукта-->
-<!--<select class="form-select" aria-label="Default select example" name="dropdown">-->
-<!--&lt;!&ndash;    <option selected>Выберите категорию продукта</option>&ndash;&gt;-->
-<!--&lt;!&ndash;    <option value="Все">Все</option>&ndash;&gt;-->
-<!--    {% for category in categories %}-->
-<!--    <option value="{{ category }}" >{{ category }}</option>-->
-<!--    {% endfor %}-->
-<!--</select>-->

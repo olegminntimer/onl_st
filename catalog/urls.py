@@ -8,7 +8,7 @@ app_name = "catalog"
 
 urlpatterns = [
     path("", ProductListView.as_view(), name="product_list"),
-    path("<str:category>", ProductCategoryListView.as_view(), name="product_category_list"),
+    path("<int:id>/", ProductCategoryListView.as_view(), name="product_category_list"),
     path("products/<int:pk>/", cache_page(60)(ProductDetailView.as_view()), name="product_detail"),
     path("products/create/", ProductCreateView.as_view(), name="product_create"),
     path("products/<int:pk>/update/", ProductUpdateView.as_view(), name="product_update"),
