@@ -1,15 +1,46 @@
+import json
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
+from django.http import request
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DeleteView, DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
 
 from catalog.forms import ProductForm, ProductModeratorForm
-from catalog.models import Product
+from catalog.models import Product, Category
+from catalog.services import get_products_from_cache, get_products_from_category  # , get_products_from_category
 
 
 class ProductListView(ListView):
     model = Product
+
+    def get_context_data(self, **kwargs):
+        categories = Category.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['categories'] = categories
+        return context
+
+    def get_queryset(self):
+        return get_products_from_cache()
+
+
+class ProductCategoryListView(ListView):
+    model = Product
+
+    template_name = "catalog/product_category_list.html"
+
+    def get_context_data(self, **kwargs):
+        categories = Category.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['categories'] = categories
+        return context
+
+    def get_queryset(self):
+        queryset = get_products_from_category(str(self.kwargs.get("id")))
+        return queryset
+
+
 
 
 class ProductDetailView(LoginRequiredMixin, DetailView):

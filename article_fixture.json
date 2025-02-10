@@ -1,0 +1,14 @@
+[
+  {
+    "model": "blogs.article",
+    "pk": 1,
+    "fields": {
+      "title": "Чай габа",
+      "content": "Этот напиток обладает оригинальным вкусом и ароматом. А еще он полезен для здоровья. Вместе с экспертами рассказываем, что такое чай габа и какой эффект он оказывает на организм.",
+      "preview": "article/preview/title-photo-f-y-in-chaj-gaba-960x540-1_8Rt2n1A.jpg",
+      "created_at": "2025-01-22",
+      "is_published": true,
+      "views_counter": 4
+    }
+  }
+]
